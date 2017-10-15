@@ -5,4 +5,4 @@
 Ако се сетите за още тестове, които правят смисъл, може да си добавите.
 
 1. [Първа седмица (въведение в неща)](01.introduction/)
-2. [TBA](http://acronyms.thefreedictionary.com/TBA)
+2. [Втора седмица (рекурсивни и итеративни процеси)](02.recursive-and-iterative-processes/)
