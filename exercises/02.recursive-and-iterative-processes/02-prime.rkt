@@ -2,7 +2,7 @@
 
 ; Искаме да проверим дали число е просто.
 
-(define (prime? x)
+(define (prime? number)
   (void)
 )
 
