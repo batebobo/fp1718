@@ -8,11 +8,6 @@
   (void)
 )
 
-; След това го върнете пак в десетична
-(define (to-decimal number)
-  (void)
-)
-
 (define tests
   (test-suite "to-binary tests"
     (check-equal? (to-binary 10) 1010)
