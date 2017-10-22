@@ -15,6 +15,7 @@
     (check-false (ends-with? 8213 31))
     (check-true (ends-with? 210 0))
     (check-false (ends-with? 2921 2))
+    (check-false (ends-with? 213 0))
   )
 )
 
