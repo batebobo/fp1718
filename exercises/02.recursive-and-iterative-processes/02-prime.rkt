@@ -1,4 +1,6 @@
 #lang racket
+(require rackunit)
+(require rackunit/text-ui)
 
 ; Искаме да проверим дали число е просто.
 
