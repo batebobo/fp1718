@@ -3,7 +3,8 @@
 1. [Въведение в неща](01.introduction.md)
 2. [Рекурсивни и итеративни процеси](02.recursive-and-iterative-processes.md)
 3. [Функции от по-висок ред](03.higher-order-functions.md)
-4. [TBA](http://acronyms.thefreedictionary.com/TBA)
+4. [Списъци](04.lists.md)
+5. [TBA](http://acronyms.thefreedictionary.com/TBA)
 
 
 # Общи
