@@ -5,7 +5,13 @@
 ; Търсим дължината на даден списък.
 
 (define (length xs)
-  (void)
+  (define (helper xs size)
+    (if(null? xs)
+       size
+       (helper (cdr xs) (+ size 1))
+       )
+    )
+  (helper xs 0)
 )
 
 (define tests

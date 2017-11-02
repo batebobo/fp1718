@@ -6,23 +6,22 @@
 (define my-list '(1 2 3 (4 5) (6 (7 8))))
 
 ; Искаме с подходящи извиквания на car и cdr да вземем всяко число.
-; Първите две са за пример.
 
-(define get-one (void))
+(define get-one (car my-list))
 
-(define get-two (void))
+(define get-two (car (cdr my-list)))
 
-(define get-three (void))
+(define get-three (car (cdr (cdr my-list))))
 
-(define get-four (void))
+(define get-four (car (car (cdr (cdr (cdr my-list))))))
 
-(define get-five (void))
+(define get-five (car (cdr (car (cdr (cdr (cdr my-list)))))))
 
-(define get-six (void))
+(define get-six (car (car (cdr (cdr (cdr (cdr my-list)))))))
 
-(define get-seven (void))
+(define get-seven (car (car (cdr (car (cdr (cdr (cdr (cdr my-list)))))))))
 
-(define get-eight (void))
+(define get-eight (car (cdr (car (cdr (car (cdr (cdr (cdr (cdr my-list))))))))))
 
 (define tests
   (test-suite "dummy tests"
