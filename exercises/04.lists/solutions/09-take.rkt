@@ -5,11 +5,11 @@
 ; Търсим функция, която връща списък от първите n елемента на даден такъв.
 
 (define (take n xs)
-  (if(or (= n 0)
-      (null? xs))
+  (if (or (= n 0)
+          (null? xs))
      '()
      (cons (car xs) (take (- n 1) (cdr xs)))
-     )
+  )
 )
 
 (define tests

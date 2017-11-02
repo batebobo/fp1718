@@ -5,60 +5,33 @@
 ; Искаме функция, която приема списък и две числа и връща
 ; списък, състоящ се от елементите на списъка, които се намират на индекси от първото число до второто.
 
-;(define (slice xs start end)
-;  (define (helper xs start end counter)
-;    (if(null? xs)
-;       '()
-;       (if(and (>= counter start)
-;               (<= counter end))
-;          (cons (car xs) (helper (cdr xs) start end (+ counter 1)))
-;          (if(< counter start)
-;             (helper (cdr xs) start end (+ counter 1))
-;             '()
-;             )
-;          )
-;    )
-;  )
-;  (helper xs start end 0)
-;)
+(define (between? x start end) (and (>= x start) (<= x end)))
 
-;(define (slice xs start end)
-;    (if(null? xs)
-;       '()
-;       (if(and (= start 0)
-;               (<= 0 end))
-;          (cons (car xs) (slice (cdr xs) start (- end 1)))
-;          (if(< 0 start)
-;             (slice (cdr xs) (- start 1) (- end 1))
-;             '()
-;             )
-;          )
-;    )
-;)
+; Рекурсивен вариант без помощна функция
+(define (slice-rec xs start end)
+  (cond ((null? xs) '())
+        ((and (= start 0) (<= 0 end))
+         (cons (car xs) (slice (cdr xs) start (- end 1))))
+        (else (slice (cdr xs) (- start 1) (- end 1)))))
 
-(define (append xs ys)
-  (if(null? xs)
-     ys
-     (cons (car xs) (append (cdr xs) ys)))
-)
+; Рекурсивен вариант с помощна функция
+(define (slice-rec-help xs start end)
+  (define (helper xs start end counter)
+    (cond ((or (null? xs) (> start counter)) '())
+          ((between? counter start end)
+           (cons (car xs) (helper (cdr xs) start end (+ counter 1))))
+          (else (helper (cdr xs) start end (+ counter 1)))))
+  (helper xs start end 0))
 
-(define (slice xs start end)
+; Итеративен вариант
+(define (slice-iter xs start end)
   (define (helper xs start end counter result)
-    (if(null? xs)
-       result
-       (if(and (>= counter start)
-               (<= counter end))
-          (helper (cdr xs) start end (+ counter 1) (append result (list (car xs)) ))
-          (if(< counter start)
-             (helper (cdr xs) start end (+ counter 1) '())
-             result
-             )
-          )
-    )
-  )
+    (cond ((or (null? xs) (< counter start)) result)
+          ((between? counter start end)
+           (helper (cdr xs) start end (+ counter 1) (append result (list (car xs)))))
+          (else (helper (cdr xs) start end (+ counter 1) result))))
   (helper xs start end 0 '())
 )
-
 
 
 (define tests
