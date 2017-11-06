@@ -5,17 +5,10 @@
 ; Търсим функция, която конкатенира два списъка
 
 (define (append xs ys)
-  (if (null? xs)
+  (if(null? xs)
      ys
      (cons (car xs) (append (cdr xs) ys)))
 )
-
-(define (append-iter xs ys)
-  (define (helper xs ys)
-    (if (null? xs)
-      ys
-      (helper (cdr xs) (cons (car xs) ys))))
-  (helper (reverse xs) ys))
 
 (define tests
   (test-suite "append tests"

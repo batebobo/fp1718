@@ -5,7 +5,14 @@
 ; Стъпвайки на дефиницията за бързо повдигане на степен,
 ; търсим такава, която генерира итеративен процес
 (define (expt x n)
-  (void)
+  (define (helper x n result)
+    (cond
+      ((= n 0) result)
+      ((= (modulo n 2) 1) (helper (* x x) (quotient n 2) (* result x)))
+      (else (helper (* x x) (quotient n 2) result))
+      )
+    )
+  (helper x n 1)
 )
 
 (define tests

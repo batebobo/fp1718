@@ -3,14 +3,14 @@
 (require rackunit/text-ui)
 
 (define (append xs ys)
-  (if (null? xs)
+  (if(null? xs)
      ys
      (cons (car xs) (append (cdr xs) ys)))
 )
 
 ; Търсим функция, която обръща даден списък
 (define (reverse xs)
-  (if (null? xs)
+  (if(null? xs)
      '()
      (append (reverse (cdr xs)) (list (car xs)))
      )
@@ -18,12 +18,12 @@
 
 ; И нейн итеративен вариант
 (define (reverse-iter xs)
-  (define (helper xs result)
-    (if (null? xs)
+    (define (helper xs result)
+    (if(null? xs)
        result
        (helper (cdr xs) (cons (car xs) result))
+       )
     )
-  )
   (helper xs '())
 )
 

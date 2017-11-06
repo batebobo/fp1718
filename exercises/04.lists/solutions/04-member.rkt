@@ -5,20 +5,14 @@
 ; Искаме да проверим дали х се съдържа в lst
 
 (define (member? x lst)
-  (if (null? lst)
+  (if(null? lst)
      #f
-     (if (= (car lst) x)
+     (if(= (car lst) x)
         #t
         (member? x (cdr lst))
      )
   )
 )
-
-; Използвайки cond
-(define (member?? x lst)
-  (cond ((null? lst) #f)
-        ((= (car lst) x) #t)
-        (else (member?? x (cdr lst)))))
 
 (define tests
   (test-suite "member tests"

@@ -5,7 +5,10 @@
 ; Искаме да вземем последния елемент на даден списък
 
 (define (last xs)
-  (void)
+  (if (= (length xs) 1)
+     (car xs)
+     (last (cdr xs))
+  )
 )
 
 (define tests

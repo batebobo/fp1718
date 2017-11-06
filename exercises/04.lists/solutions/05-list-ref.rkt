@@ -4,10 +4,18 @@
 
 ; Искаме да вземем i-тия елемент от списъка lst, като броим от 0.
 
-(define (list-ref-rec lst i)
-  (cond ((null? lst) (error "Empty list"))
-        ((= i 0) (car lst))
-        (else (list-ref-rec (cdr lst) (- i 1)))))
+(define (list-ref lst i)
+  (define (helper lst i curr)
+    (if(null? lst)
+       #f
+       (if(= curr i)
+          (car lst)
+          (helper (cdr lst) i (+ curr 1))
+          )
+       )
+    )
+  (helper lst i 0)
+)
 
 (define tests
   (test-suite "List ref tests"

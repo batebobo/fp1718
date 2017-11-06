@@ -11,8 +11,8 @@
 (define (slice-rec xs start end)
   (cond ((null? xs) '())
         ((and (= start 0) (<= 0 end))
-         (cons (car xs) (slice (cdr xs) start (- end 1))))
-        (else (slice (cdr xs) (- start 1) (- end 1)))))
+         (cons (car xs) (slice-rec (cdr xs) start (- end 1))))
+        (else (slice-rec (cdr xs) (- start 1) (- end 1)))))
 
 ; Рекурсивен вариант с помощна функция
 (define (slice-rec-help xs start end)
@@ -32,7 +32,6 @@
           (else (helper (cdr xs) start end (+ counter 1) result))))
   (helper xs start end 0 '())
 )
-
 
 (define tests
  (test-suite "Slice tests"

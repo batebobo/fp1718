@@ -4,17 +4,8 @@
 
 ; zip
 
-(define (append xs ys)
-  (if(null? xs)
-     ys
-     (cons (car xs) (append (cdr xs) ys)))
-)
-
 (define (zip xs ys)
-  (if (or (null? xs) (null? ys))
-      '()
-      (cons (append (list (car xs)) (list (car ys))) (zip (cdr xs) (cdr ys)))
-      )
+  (void)
 )
 
 (define tests

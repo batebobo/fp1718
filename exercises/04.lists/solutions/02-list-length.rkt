@@ -4,22 +4,15 @@
 
 ; Търсим дължината на даден списък.
 
-; Итеративен вариант
 (define (length xs)
   (define (helper xs size)
-    (if (null? xs)
-        size
-        (helper (cdr xs) (+ size 1))
+    (if(null? xs)
+       size
+       (helper (cdr xs) (+ size 1))
+       )
     )
-  )
   (helper xs 0)
 )
-
-; Рекурсивен вариант
-(define (length-rec xs)
-  (if (null? xs)
-      0
-      (+ 1 (lengt-rec (cdr xs)))))
 
 (define tests
   (test-suite "dummy tests"

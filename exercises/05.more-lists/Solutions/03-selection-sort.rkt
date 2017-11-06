@@ -8,31 +8,17 @@
 ; Намира най-малкото число в списъка
 
 (define (minimum xs)
-  (define (helper xs min)
-    (if (null? xs)
-       min
-       (if (< (car xs) min)
-          (helper (cdr xs) (car xs))
-          (helper (cdr xs) min)
-          )
-       )
-    )
-  (helper xs (car xs))
+  (void)
 )
 
 ; Връща списъка xs без първото срещане на x в него
 (define (remove x xs)
-  (if (= (car xs) x)
-     (cdr xs)
-     (cons (car xs) (remove x (cdr xs)))
-     )
+  (void)
 )
 
 ; Самият selection sort:
 (define (selection-sort xs)
-  (if (null? xs)
-     '()
-     (cons (minimum xs) (selection-sort (remove (minimum xs) xs))))
+  (void)
 )
 
 (define tests
