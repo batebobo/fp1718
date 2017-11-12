@@ -2,6 +2,7 @@
 (require rackunit)
 (require rackunit/text-ui)
 (require (only-in "./02-make-matrix.rkt" make-matrix))
+(provide get-row)
 
 ; Искаме да можем да взимаме к-тия ред на дадена матрица.
 
