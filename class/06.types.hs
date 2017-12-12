@@ -45,10 +45,10 @@ remove'' xs element = filter (/= element) xs
 -- тук деконструираме списъка, с който е извикана функцията, на глава и опашка
 -- в тялото на функцията `x` е първият елемент на списъка, а `xs` - останалите.
 remove''' :: Eq a => [a] -> a -> [a]
-remove''' _ [] = []
-remove''' element (x:xs)
-  |x == element = remove''' element xs
-  |otherwise = x : remove''' element xs
+remove''' [] _ = []
+remove''' (x:xs) element 
+  |x == element = remove''' xs element
+  |otherwise = x : remove''' xs element 
 
 -- Това сме го правили в Racket. Тук става доста по-лесно.
 -- Декларацията ни казва, че очакваме списък от неща, които могат да бъдат подреждани
@@ -69,23 +69,50 @@ quicksort (pivot:xs) = (quicksort smaller) ++ [pivot] ++ (quicksort bigger) -- (
     where smaller = [y | y <- xs, y < pivot]
           bigger = [y | y <- xs, y >= pivot]
 
-average' :: [Int] -> Double -- ??
 
--- convert from Int to Double (or Float, or whatever is a (Num)
-conv :: Int -> Double
+-- Функция, която вмъква елемент в сортиран списък на "правилното" място
+-- така че елементите преди него да са по-малки, а тези след него - по-големи
+-- по този начин знаем, че списъкът остава сортиран след вмъкването
+insert' :: Ord a => a -> [a] -> [a]
+insert' y [] = [y]
+insert' y (x:xs)
+    |y <= x = y : x : xs
+    |otherwise = x : insert' y xs
+
+-- Сигнатурата на всички сортиращи функции трябва да изглежда така
+-- foldr (както и в Racket) приема двуместна функция, с която комбинира стойности,
+-- начална стойност (в случая - празен списък) и списък, който обхождаме
+-- с това извикване на foldr, на всяка стъпка слагаме в резултатния списък (който в началото е празен нали)
+-- текущото число
+-- тъй като го слагаме с insert', знаем че резултатът ни ще е сортиран (заради свойството, което insert' изпълнява, а именно
+-- запазва сортирането след вмъкване)
+insertionSort :: Ord a => [a] -> [a]
+insertionSort xs = foldr insert' [] xs
+
+-- convert from Int to Double (or Float, or whatever is a (Num))
+conv :: (Integral a) => a -> Double
 conv x = (fromIntegral x) :: Double
-
 -- с "fromIntegral" казваме че от "Integral" число искаме да направим някакво друго
 -- и с ":: Double" казваме какъв му е типът (демек към какво искаме да го конвертираме)
 --
 --
 -- signature for fromIntegral below
 -- fromIntegral :: (Num b, Integral a) => a -> b
---
---
---
---
---
---
---
 
+average' :: (Integral a) => [a] -> Double
+average' xs = (conv (sum xs)) / (conv (length xs))
+
+-- Първи начин да проверим дали число е просто
+-- функцията null приема за аргумент списък и връща True, ако той е празен
+-- С list comprehension-а правим списък на всички делители на n от 2 do n/2
+-- Ако списъкът е празен, n e просто.
+prime :: Int -> Bool
+prime n = null [x | x <- [2..(n `div` 2)], x `divides` n]
+    where divides x y = y `rem` x == 0
+
+prime' :: Int -> Bool
+prime' n = helper 2
+    where helper k
+             |k > n `div` 2 = True
+             |n  `rem` k == 0 = False
+             |otherwise = helper (k + 1)
