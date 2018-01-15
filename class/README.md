@@ -7,7 +7,8 @@
 5. [Haskell](05.haskell.md)
 6. [Типове](06.types.hs)
 7. [Функции от по-висок ред](07.higher-order-functions.hs)
-8. [Играчка със задачи от контролни](08.exam-practice.hs)
+8. [ADTs](09.own-types.hs)
+9. [Играчка със задачи от контролни](09.exam-practice.hs)
 
 
 # Общи
