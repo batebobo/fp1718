@@ -31,7 +31,7 @@ bagEqual (x:xs) ys = x `elem` ys && bagEqual xs (removeOnce x ys)
         where removeOnce x xs = takeWhile (/= x) xs ++ tail (dropWhile (/= x) xs) 
 
 bagUnion :: Eq a => [(a, Int)] -> [(a, Int)] -> [(a, Int)]
-bagUnion xs ys = reduce (reduce (xs ++ ys))
+bagUnion xs ys = reduce (xs ++ ys)
    where reduce [] = []
          reduce (x:xs)
            |(fst x) `bagElem` xs && (snd x) <= snd (find x xs) = reduce xs
